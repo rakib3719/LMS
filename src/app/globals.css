@@ -1,9 +1,29 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
 
 /* common class */
 
 /* text colors */
+
+@layer utilities{
+  .text{
+
+    @apply text-gray-100 dark:text-gray-100 bg-orange-800 py-10;
+
+  }
+
+  .section-gap{
+
+    @apply px-[20vw]
+  
+  };
+
+  .text-primary{
+   @apply text-[#ffd300];
+  }
+
+  }
+
 
 .text-primary{
   color: #ffd300;

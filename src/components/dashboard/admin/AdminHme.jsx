@@ -1,5 +1,5 @@
 import React from 'react';
-import welcome from '@/assets/images/dashboard/welcome.png';
+import welcome from '../../../assets/images/dashboard/welcome.png';
 import Image from 'next/image';
 import Summury from './Summury';
 import TopInstructors from './TopInstructors';

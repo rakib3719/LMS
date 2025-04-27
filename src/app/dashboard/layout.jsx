@@ -1,10 +1,14 @@
 
+'use client';
 
 import "../../app/globals.css";
-import Header from "@/components/dashboard/Header";
-import Sidebar from "@/components/dashboard/Sidebar";
-import Subheader from "@/components/dashboard/Subheader";
+
+// import Sidebar from "@/components/dashboard/Sidebar";
+// import Subheader from "@/components/dashboard/Subheader";
 import { FaDiceThree, FaTimes } from "react-icons/fa";
+import useAuthToken from "../hooks/useAuthToken";
+import { useEffect } from "react";
+// import Header from "@/components/dashboard/Header";
 
 
 
@@ -16,11 +20,18 @@ export default function RootLayout({ children }) {
     //     setShowMenu(!showMenu);
     // };
 
+//    useEffect(()=>{
+
+// const {token} = useAuthToken()
+// console.log(token, 'token from layout');
+
+//    },[])
+
     return (
         <html lang="en">
             <body >
                 <div className="relative" >
-                    <Subheader />
+                    {/* <Subheader /> */}
 
                     {/* Mobile Menu Toggle Button */}
                     {/* <button 
@@ -39,7 +50,7 @@ export default function RootLayout({ children }) {
                         {/* <AnimatePresence> */}
                         
                                 
-                                    <Sidebar />
+                                    {/* <Sidebar /> */}
                            
                           
                         {/* </AnimatePresence> */}
@@ -58,7 +69,7 @@ export default function RootLayout({ children }) {
                         </AnimatePresence> */}
 
                         <div className="w-full min-h-screen  main-bg ">
-                            <Header />
+                            {/* <Header /> */}
                             <div className="mt-12 ">
                                 {children}
                             </div>

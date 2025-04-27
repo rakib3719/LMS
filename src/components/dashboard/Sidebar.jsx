@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import logo from '@/assets/images/logo2.png';
+// import logo from '@/assets/images/logo2.png';
+import logo from '../../assets/images/logo2.png'
 import Image from 'next/image';
 import { IoIosCloseCircleOutline, IoMdClose } from "react-icons/io";
 

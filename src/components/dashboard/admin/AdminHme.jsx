@@ -1,11 +1,11 @@
 import React from 'react';
 import welcome from '../../../assets/images/dashboard/welcome.png';
 import Image from 'next/image';
-import Summury from './Summury';
-import TopInstructors from './TopInstructors';
-import Summury2 from './Summury2';
-import TopCoursesCategories from './TopCoursesCategories';
-import RecentCourse from './RecentCourse';
+// import Summury from './Summury';
+// import TopInstructors from './TopInstructors';
+// import Summury2 from './Summury2';
+// import TopCoursesCategories from './TopCoursesCategories';
+// import RecentCourse from './RecentCourse';
 
 const AdminHme = () => {
     return (
@@ -29,10 +29,10 @@ const AdminHme = () => {
 
            </section>
 
-           <Summury/>
+           {/* <Summury/> */}
 
-     
-           <RecentCourse/>
+{/*      
+           <RecentCourse/> */}
 
         </div>
     );

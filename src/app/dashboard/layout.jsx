@@ -3,8 +3,9 @@
 
 import "../../app/globals.css";
 
-// import Sidebar from "@/components/dashboard/Sidebar";
-// import Subheader from "@/components/dashboard/Subheader";
+import Sidebar from "../../components/dashboard/Sidebar";
+import Subheader from "../../components/dashboard/Subheader";
+
 import { FaDiceThree, FaTimes } from "react-icons/fa";
 import useAuthToken from "../hooks/useAuthToken";
 import { useEffect } from "react";
@@ -31,7 +32,7 @@ export default function RootLayout({ children }) {
         <html lang="en">
             <body >
                 <div className="relative" >
-                    {/* <Subheader /> */}
+                    <Subheader />
 
                     {/* Mobile Menu Toggle Button */}
                     {/* <button 
@@ -50,7 +51,7 @@ export default function RootLayout({ children }) {
                         {/* <AnimatePresence> */}
                         
                                 
-                                    {/* <Sidebar /> */}
+                                    <Sidebar />
                            
                           
                         {/* </AnimatePresence> */}

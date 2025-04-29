@@ -9,6 +9,7 @@ import Subheader from "../../components/dashboard/Subheader";
 import { FaDiceThree, FaTimes } from "react-icons/fa";
 import useAuthToken from "../hooks/useAuthToken";
 import { useEffect } from "react";
+import Header from "../../components/dashboard/Header";
 // import Header from "@/components/dashboard/Header";
 
 
@@ -29,10 +30,10 @@ export default function RootLayout({ children }) {
 //    },[])
 
     return (
-        <html lang="en">
-            <body >
+     
+          
                 <div className="relative" >
-                    <Subheader />
+                    {/* <Subheader /> */}
 
                     {/* Mobile Menu Toggle Button */}
                     {/* <button 
@@ -51,7 +52,7 @@ export default function RootLayout({ children }) {
                         {/* <AnimatePresence> */}
                         
                                 
-                                    <Sidebar />
+                                  
                            
                           
                         {/* </AnimatePresence> */}
@@ -68,16 +69,17 @@ export default function RootLayout({ children }) {
                                 />
                             )}
                         </AnimatePresence> */}
+                          <Sidebar />
 
-                        <div className="w-full min-h-screen  main-bg ">
-                            {/* <Header /> */}
-                            <div className="mt-12 ">
+                        <div className="w-full min-h-screen   ">
+                            <Header />
+                            <div className="p-[5%] ">
                                 {children}
                             </div>
                         </div>
                     </section>
                 </div>
-            </body>
-        </html>
+          
+      
     );
 }

@@ -1,30 +1,55 @@
 'use client';
 import React, { useState } from 'react';
-import Subheader from './Subheader';
-import logo from '@/assets/images/logo2.png';
-import Image from 'next/image';
-import { FiSearch, FiBell, FiUser, FiSettings, FiMessageSquare, FiShoppingBag, FiLogOut } from 'react-icons/fi';
+import Link from 'next/link';
+import { FiSearch, FiBell, FiUser, FiSettings, FiMessageSquare, FiShoppingBag, FiLogOut, FiHome } from 'react-icons/fi';
 import { RiHistoryLine } from 'react-icons/ri';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useParams, usePathname } from 'next/navigation';
+
 
 const Header = () => {
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [isNotificationOpen, setIsNotificationOpen] = useState(false);
 
+//     const router = useRouter();
+
+//   console.log(router);
+
+    const pathname = usePathname();
+    const lastPart = pathname.split('/').pop(); // "my-profile"
+
+    // Replace "-" with " " and capitalize each word
+    const formattedTitle = lastPart
+      .split('-')                     // ['my', 'profile']
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // ['My', 'Profile']
+      .join(' ');  
+      
+      
+
     return (
         
+
+
+
         <>
-            <div  className='bg-gray-900  border-b border-gray-100 sticky top-0  lg:top-8 items-center p-4'>
+            <div  className='bg-white  border-b border-gray-100 sticky top-0   items-center p-4'>
                 <div className='flex items-center justify-between w-full'>
                     <section className='px-6'>
-                        <div className="relative ml-6 lg:ml-0 max-w-md mx-auto">
-                            <input
-                                type="text"
-                                placeholder="Search"
-                                className="w-full bg-secondary py-2 pl-10 pr-4 rounded-full border border-gray-300 card-bg focus:outline-none focus:ring-1 focus:ring-yellow-300 focus:border-transparent"
-                            />
-                            <FiSearch className="absolute left-3  dark:text-black top-3 text-gray-400" />
+                    <h2>{formattedTitle}</h2>
+
+                        <div >
+
+                       
+                       <Link href='/dashboard' className='flex items-center gap-2'>
+                       < FiHome/>
+                       
+                       <span>{pathname}</span>
+                       </Link>
+
                         </div>
+
+                        
+                        
                     </section>
 
                     <section className='flex items-center gap-4'>
@@ -48,7 +73,7 @@ const Header = () => {
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0 }}
                                         transition={{ duration: 0.3 }}
-                                        className="absolute right-0 mt-2 w-72 bg-gray-900 rounded-md shadow-lg py-1 z-50 origin-top-right"
+                                        className="absolute right-0 mt-2 w-72 bg-white rounded-md shadow-lg py-1 z-50 origin-top-right"
                                     >
                                         <div className="px-4 py-2 border-b border-gray-800">
                                             <h3 className="font-medium">Notifications</h3>
@@ -87,7 +112,7 @@ const Header = () => {
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0 }}
                                         transition={{ duration: 0.3 }}
-                                        className="absolute right-0 mt-2 w-56 bg-gray-900 rounded-md shadow-lg py-1 z-50 origin-top-right"
+                                        className="absolute right-0 mt-2 w-56 bg-gray-100 rounded-md shadow-lg py-1 z-50 origin-top-right"
                                     >
                                         <div className="px-4 py-3 border-b">
                                             <div className="flex items-center gap-3">
@@ -101,30 +126,26 @@ const Header = () => {
                                             </div>
                                         </div>
                                         <div className="py-1">
-                                            <motion.a 
+                                           <Link href='/dashboard/my-profile'>
+                                           
+                                           <motion.a
                                                 whileHover={{ x: 4 }}
-                                                href="#" className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 gap-2">
+                                                href="/dashboard" className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 gap-2">
                                                 <FiUser className="text-gray-500" />
                                                 My Profile
                                             </motion.a>
-                                            <motion.a 
+                                           </Link>
+                                          <Link href='/dashboard/payment-history'>
+                                          
+                                          <motion.a 
                                                 whileHover={{ x: 4 }}
                                                 href="#" className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 gap-2">
                                                 <RiHistoryLine className="text-gray-500" />
-                                                Order History
+                                                Payment History
                                             </motion.a>
-                                            <motion.a 
-                                                whileHover={{ x: 4 }}
-                                                href="#" className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 gap-2">
-                                                <FiSettings className="text-gray-500" />
-                                                Account Settings
-                                            </motion.a>
-                                            <motion.a 
-                                                whileHover={{ x: 4 }}
-                                                href="#" className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 gap-2">
-                                                <FiMessageSquare className="text-gray-500" />
-                                                Messages
-                                            </motion.a>
+                                          </Link>
+                                          
+                                          
                                         </div>
                                         <div className="px-4 py-2 border-t">
                                             <motion.a 

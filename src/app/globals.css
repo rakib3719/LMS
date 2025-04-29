@@ -63,6 +63,9 @@
     @apply text-[12px] font-medium text-[#11111199];
   }
 
+  .bg-white {
+    @apply bg-[#FFFFFF];
+  }
  
   .text-primary {
     color: #ffd300;
@@ -73,6 +76,8 @@
 }
 
 /* bg colors */
+
+
 
 .bg-primary{
 background-color: #ffd300;

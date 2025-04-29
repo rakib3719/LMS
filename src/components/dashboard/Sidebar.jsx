@@ -17,7 +17,7 @@ import { CgFileDocument } from "react-icons/cg";
 import { MdAssignmentAdd, MdMenu, MdOutlineMenuOpen, MdOutlineQuiz, MdPayment } from 'react-icons/md';
 import { BsStack } from "react-icons/bs";
 import { FaChalkboardTeacher, FaRegUser } from 'react-icons/fa';
-import { PiUsersFour } from "react-icons/pi";
+import { PiStackPlusFill, PiUsersFour } from "react-icons/pi";
 import { AiOutlineSchedule } from "react-icons/ai";
 import { IoFolderOpenOutline } from "react-icons/io5";
 import { GrCertificate } from "react-icons/gr";
@@ -82,6 +82,13 @@ const Sidebar = () => {
         menuName: "Batches",
         link: "/dashboard/batches",
         icon: <PiUsersFour className="text-lg" />,
+
+      },
+
+      {
+        menuName: "Admitted Courses",
+        link: "/dashboard/admitted-courses",
+        icon: <PiStackPlusFill className="text-lg" />,
 
       },
       {

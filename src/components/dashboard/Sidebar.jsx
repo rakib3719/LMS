@@ -86,7 +86,7 @@ const Sidebar = () => {
       },
       {
         menuName: "Class Schedule",
-        link: "/dashboard/counselor-class-schedule",
+        link: "/dashboard/class-schedule",
         icon: <AiOutlineSchedule className="text-lg" />,
 
       },
@@ -250,7 +250,7 @@ const Sidebar = () => {
       {/* <div className='hidden lg:block w-[250px]  absolute'>
 
     </div> */}
-      <div className={`fixed top-16  ${showMenuPc ? '-ml-[25vw] duration-700' : 'ml-0 duration-700'} lg:sticky  text-white bg-white w-[25vw] h-screen p-6 lg:top-0 overflow-y-auto shadow-lg transition-all duration-300 ease-in-out ${showMenu ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
+      <div className={`fixed top-16  ${showMenuPc ? '-ml-[25vw] 2xl:-ml-[20vw] duration-700' : 'ml-0 duration-700'} lg:sticky  text-white bg-white w-[25vw] 2xl:w-[20vw] h-screen p-6 lg:top-0 overflow-y-auto shadow-lg transition-all duration-300 ease-in-out ${showMenu ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
         {/* Logo Section */}
         {/* <div className={`fixed top-16 ${showMenuPc ? '-ml-[250px] duration-700' : 'ml-0 duration-700'} lg:sticky bg-white w-[250px] h-screen p-6 lg:top-0 overflow-y-auto shadow-lg transition-all duration-300 ease-in-out ${showMenu ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}> */}
 
@@ -272,7 +272,9 @@ const Sidebar = () => {
 
 
           {/* counselor */}
-          <div>
+          <div className='border-b pb-4'> 
+            
+        
             {counselorMenu.map((item) => (
               <div key={item.menuName} className="mb-1">
               <Link   href={item.link}>
@@ -285,7 +287,7 @@ const Sidebar = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <Link href={item.link}
+                  <div 
                     className="flex items-center gap-3"
                     onClick={() => !item.submenu && setActiveMenu(item.link)}
                   >
@@ -293,7 +295,7 @@ const Sidebar = () => {
                       {item.icon}
                     </span>
                     <span className="text-base font-medium">{item.menuName}</span>
-                  </Link>
+                  </div>
 
 
                 </motion.div></Link>
@@ -316,7 +318,7 @@ const Sidebar = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <Link href={item.link}
+                  <div
                     className="flex items-center gap-3"
                     onClick={() => !item.submenu && setActiveMenu(item.link)}
                   >
@@ -324,7 +326,7 @@ const Sidebar = () => {
                       {item.icon}
                     </span>
                     <span className="text-base font-medium">{item.menuName}</span>
-                  </Link>
+                  </div>
 
 
                 </motion.div></Link>
@@ -336,7 +338,7 @@ const Sidebar = () => {
           </div>
 
           {/* stduent */}
-          <div>
+          {/* <div>
           {studentMenu.map((item) => (
               <div key={item.menuName} className="mb-1">
               <Link   href={item.link}>
@@ -366,7 +368,7 @@ const Sidebar = () => {
             ))}
 
 
-          </div>
+          </div> */}
 
           <div>
 

@@ -1,10 +1,11 @@
 import React from 'react';
-import DashBoardHome from '../pages/dashboard/DashBoardHome';
+
 
 const page = () => {
     return (
         <div>
-<DashBoardHome/>
+            <h1>Dashboard</h1>
+
         </div>
     );
 };

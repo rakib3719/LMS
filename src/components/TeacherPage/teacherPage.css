@@ -1,0 +1,11 @@
+
+@import "tailwindcss";
+
+/* edn --> edu den  */
+/* tp --> teacher page  */
+
+@layer utilities {
+    .edn__tp__input {
+        @apply  w-full p-2 border border-black/20 rounded outline-none text-black/80 text-sm font-medium
+    }
+}

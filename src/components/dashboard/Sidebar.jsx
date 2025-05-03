@@ -241,7 +241,9 @@ const Sidebar = () => {
       </div>
 
 
+
       <div className={`hidden lg:block fixed duration-700 top-60 z-50  ${!showMenuPc ? 'left-[24vw] 2xl:left-[19vw]' : 'left-0'}`}>
+
         {!showMenuPc ? <IoIosCloseCircleOutline
 
           onClick={toggleMenuPc}

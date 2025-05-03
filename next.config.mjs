@@ -3,15 +3,17 @@ const nextConfig = {
     images: {
       remotePatterns: [
         {
-          protocol: 'https',
-          hostname: '**',
+          hostname: 'api.eduden.mrshakil.com',
+          pathname: '/media/teachers/picture/**',
         },
         {
-          protocol: 'http',
-          hostname: '**',
+          protocol: 'https',
+          hostname: 'api.eduden.mrshakil.com',
+          pathname: '/media/students/picture/**',
         },
       ],
     },
-  };
+  }
   
-  export default nextConfig;
+  export default nextConfig
+  

@@ -1,48 +1,70 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useGetData from '@/app/hooks/useGetData';
 import { base_url } from '@/app/utils/api';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-const AdmitCourse = () => {
+const UpdateAdmitCourse = ({ id }) => {
   const {
     data: students,
     loading: studentsLoading,
-    error: studentsError
+    error: studentsError,
   } = useGetData('/students/');
 
   const {
     data: batches,
     loading: batchesLoading,
-    error: batchesError
+    error: batchesError,
   } = useGetData('/batches/');
+
+  const {
+    data: existingData,
+    loading: existingLoading,
+    error: existingError,
+  } = useGetData(`/admitted-courses/${id}/`);
 
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm();
 
-  const submitHandler = async (formData) => {
-    const result = await Swal.fire({
+  // Prefill the form once data is loaded
+  useEffect(() => {
+    if (!existingLoading && existingData) {
+      reset({
+        student: existingData.student,
+        batch: existingData.batch,
+        payment: existingData.payment || '',
+      });
+    }
+  }, [existingLoading, existingData, reset]);
+
+  const onSubmit = async (formData) => {
+    const confirm = await Swal.fire({
       title: 'Are you sure?',
-      text: 'Are you sure you want to admit this student?',
+      text: 'Do you want to update this admission?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, save it!',
-      cancelButtonText: 'Cancel'
+      confirmButtonText: 'Yes, update it!',
+      cancelButtonText: 'Cancel',
     });
 
-    if (!result.isConfirmed) return;
+    if (!confirm.isConfirmed) return;
 
     try {
-      const resp = await axios.post(`${base_url}/admitted-courses/`, formData);
-      if (resp.status === 201) {
-        await Swal.fire('Success!', 'Student admitted successfully!', 'success');
+      const updatedData = {
+        student: formData.student,
+        batch: formData.batch,
+        ...(formData.payment && { payment: formData.payment }),
+      };
+
+      const resp = await axios.put(`${base_url}/admitted-courses/${id}/`, updatedData);
+      if (resp.status === 200 || resp.status === 204) {
+        await Swal.fire('Updated!', 'Admission updated successfully.', 'success');
       }
     } catch (error) {
       Swal.fire('Error', error?.message || 'Something went wrong!', 'error');
@@ -50,9 +72,9 @@ const AdmitCourse = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-8 bg-white ">
-      <h2 className="text-2xl font-semibold mb-6 border-b border-gray-200 pb-4">Admit Student to Course</h2>
-      <form onSubmit={handleSubmit(submitHandler)}>
+    <div className="max-w-6xl mx-auto p-8 bg-white">
+      <h2 className="text-2xl font-semibold mb-6 border-b border-gray-200 pb-4">Update Student Admission</h2>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
           {/* Student Select */}
           <div>
@@ -75,7 +97,7 @@ const AdmitCourse = () => {
                   {students &&
                     students.map((s) => (
                       <option key={s.id} value={s.id}>
-                        {s.user}
+                        {s.student_id}
                       </option>
                     ))}
                 </>
@@ -123,12 +145,10 @@ const AdmitCourse = () => {
               id="payment"
               type="number"
               placeholder="Enter payment amount"
-              {...register('payment', { required: true, min: 0 })}
+              {...register('payment', { min: 0 })}
               className="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none"
             />
-            {errors.payment && (
-              <span className="text-red-500">payment  is required</span>
-            )}
+            {errors.payment && <span className="text-red-500">Payment amount reqired</span>}
           </div>
         </div>
 
@@ -136,9 +156,12 @@ const AdmitCourse = () => {
         <div className="mt-8">
           <button
             type="submit"
-            className="bg-black text-white cursor-pointer px-6 py-2 rounded  transition duration-200"
+            className={`bg-black text-white px-6 py-2 rounded transition duration-200 ${
+              isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            disabled={isSubmitting}
           >
-            Admit Student
+            {isSubmitting ? 'Updating...' : 'Update Admission'}
           </button>
         </div>
       </form>
@@ -146,4 +169,4 @@ const AdmitCourse = () => {
   );
 };
 
-export default AdmitCourse;
+export default UpdateAdmitCourse;

@@ -1,12 +1,12 @@
 'use client';
 import React, { useState } from 'react';
-import './admittedeCourse.css';
+import './classShedule.css';
 import useGetData from '@/app/hooks/useGetData';
+import { FaPlus, FaSearch, FaEdit, FaTrash } from 'react-icons/fa';
 import Link from 'next/link';
-import AdmittedCoursesTable from './AdmittedCoursesTable';
-import { FaPlus, FaSearch } from 'react-icons/fa';
+import CalassSheduleTable from './ClassSheduleTable';
 
-const AdmitedCoursePage = () => {
+const ClassShedulePage = () => {
     const [filter, setFilter] = useState('');
     const [searchInput, setSearchInput] = useState('');
     const [searchType, setSearchType] = useState('batch'); 
@@ -14,15 +14,22 @@ const AdmitedCoursePage = () => {
 
     const buildApiUrl = () => {
         let params = new URLSearchParams();
+        
         if (filter) params.append('status', filter);
+        
         if (activeSearch) {
             if (searchType === 'batch') {
                 params.append('batch_name', activeSearch);
-            } else {
+            } else if (searchType === 'course') {
                 params.append('course_name', activeSearch);
+            } else if (searchType === 'teacher') {
+                params.append('teacher', activeSearch);
+            } else if (searchType === 'date') {
+                params.append('class_date', activeSearch);
             }
         }
-        return `/admitted-courses/?${params.toString()}`;
+        
+        return `/class-schedules/?${params.toString()}`;
     };
 
     const { data, loading, error } = useGetData(buildApiUrl());
@@ -53,15 +60,15 @@ const AdmitedCoursePage = () => {
         <div className="p-4">
             <div className="mb-6">
                 <Link 
-                    href={'/dashboard/admitted-courses/admit-course'} 
+                    href={'/dashboard/class-schedule/create-class-schedule'} 
                     className='bg-[#FBBD08] hover:bg-[#e6ac07] text-black px-4 py-2 rounded-lg flex items-center gap-2 w-fit'
                 >
-                    <FaPlus /> Admit Course
+                    <FaPlus /> Create Class Shedule
                 </Link>
             </div>
 
             <div className='flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4'>
-                <h1 className='text-2xl font-semibold'>Admitted Courses</h1>
+                <h1 className='text-2xl font-semibold'>Class shedule</h1>
                 
                 <div className="flex flex-col sm:flex-row gap-4">
                     {/* Search Input with Dropdown Button */}
@@ -74,12 +81,19 @@ const AdmitedCoursePage = () => {
                         >
                             <option value="batch">Search by Batch</option>
                             <option value="course">Search by Course</option>
+                            <option value="teacher">Search by Teacher ID</option>
+                            <option value="date">Search by Date</option>
                         </select>
                         
                         {/* Search Input */}
                         <input
                             type="text"
-                            placeholder={searchType === 'batch' ? 'Enter batch name...' : 'Enter course name...'}
+                            placeholder={
+                                searchType === 'batch' ? 'Enter batch name...' :
+                                searchType === 'course' ? 'Enter course name...' :
+                                searchType === 'teacher' ? 'Enter teacher ID...' :
+                                'Enter date (YYYY-MM-DD)...'
+                            }
                             className="p-2 border border-gray-300 focus:ring-2 focus:ring-[#FBBD08] focus:border-[#FBBD08] w-full outline-none"
                             value={searchInput}
                             onChange={(e) => setSearchInput(e.target.value)}
@@ -109,9 +123,12 @@ const AdmitedCoursePage = () => {
                 </div>
             </div>
 
-            <AdmittedCoursesTable   data={data || []} />
+            <CalassSheduleTable 
+                data={data || []} 
+                
+            />
         </div>
     );
 };
 
-export default AdmitedCoursePage;
+export default ClassShedulePage;

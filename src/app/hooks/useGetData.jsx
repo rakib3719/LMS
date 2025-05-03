@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { base_url } from '../utils/api';
+import { base_url } from '../utils/api'
 
 const useGetData = (endPoint) => {
   const [data, setData] = useState(null);

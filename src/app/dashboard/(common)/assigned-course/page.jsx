@@ -1,9 +1,11 @@
+
+import AssignedCoursePage from '@/components/dashboard/common/assignedCourse/AssignedCoursePage';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            <h1>assigned-course</h1>
+          <AssignedCoursePage/>
         </div>
     );
 };

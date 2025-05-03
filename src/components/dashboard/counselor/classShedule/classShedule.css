@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+
+
+
+@layer utilities {
+  .text {
+    @apply text-gray-100 dark:text-gray-100 bg-orange-800 py-10;
+  }
+
+  .section-gap {
+    @apply px-[20vw];
+  }
+
+  /* .complated-status{
+    @apply bg-[#0892361A] text-[#089236]
+  } */
+  /*  */
+
+  /* text */
+  .text-small {
+    @apply text-[12px];
+  }
+  .text-regular {
+    @apply text-[16px];
+  }
+  .text-medium {
+    @apply text-[18px];
+  }
+  .text-md-big {
+    @apply text-[20px];
+  }
+  .text-big {
+    @apply text-[30px];
+  }
+
+
+
+/* heaidng */
+  .heading {
+    @apply text-[30px] font-semibold text-[#111111E5];
+  }
+  .subheading {
+    @apply text-[18px] font-medium text-[#111111E5];
+
+  }
+
+
+
+  /* titl */
+  .page-title {
+    @apply text-[20px] font-semibold text-black;
+  }
+  .item-title-primary {
+    @apply text-[16px] font-medium text-black;
+  }
+  .item-title-secondary {
+    @apply text-[14px] font-semibold text-[#111111CC];
+  }
+
+  /* Pa... */
+  .p-sm-light {
+    @apply text-[12px] font-medium text-[#00000066];
+  }
+  .p-sm-normal {
+    @apply text-[12px] font-medium text-[#11111199];
+  }
+
+  .bg-white {
+    @apply bg-[#FFFFFF];
+  }
+ 
+  .text-primary {
+    color: #ffd300;
+  }
+  .text-secondary {
+    color: gray;
+  }
+}

@@ -1,17 +1,18 @@
 'use client';
+import useGetData from '@/app/hooks/useGetData';
 import { base_url } from '@/app/utils/api';
 import axios from 'axios';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { FaEye, FaEdit, FaTrash, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaEye, FaUser, FaEdit, FaTrash, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
-const AdmittedCoursesTable = ({ data }) => {
+const AssignedCourseTable = ({ data }) => {
   const [newData, setData] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  
+  // Calculate total pages
   const totalPages = Math.ceil(newData.length / itemsPerPage);
   
   // Get current items
@@ -40,8 +41,7 @@ const AdmittedCoursesTable = ({ data }) => {
       for (let i = startPage; i <= endPage; i++) {
         pages.push(i);
       }
-      
-     
+   
       if (startPage > 1) {
         pages.unshift('...');
         pages.unshift(1);
@@ -70,14 +70,14 @@ const AdmittedCoursesTable = ({ data }) => {
     if (!result.isConfirmed) return;
 
     try {
-      const resp = await axios.delete(`${base_url}/admitted-courses/${id}/`);
+      const resp = await axios.delete(`${base_url}/assign-courses/${id}/`);
       if (resp.status === 204) {
         const newDataAfterDelete = newData.filter(item => item.id !== id);
         setData(newDataAfterDelete);
         
         await Swal.fire(
           'Deleted!',
-          'Admitted Courses record has been deleted.',
+          'Admission record has been deleted.',
           'success'
         );
         
@@ -88,7 +88,7 @@ const AdmittedCoursesTable = ({ data }) => {
       }
     } catch (error) {
       console.error(error);
-      await Swal.fire(
+      Swal.fire(
         'Error!',
         'Something went wrong while deleting the record.',
         'error'
@@ -107,19 +107,17 @@ const AdmittedCoursesTable = ({ data }) => {
               <col />
               <col />
               <col />
-              <col />
-              <col />
               <col className="w-24" />
+              <col />
             </colgroup>
             <thead className="dark:bg-gray-300">
               <tr className="text-left">
-                <th className="p-3">Student ID</th>
-                <th className="p-3">Batch</th>
-                <th className="p-3">Course Fee</th>
-                <th className="p-3">Payment</th>
-                <th className="p-3">Due</th>
-                <th className="p-3">Admission Date</th>
+                <th className="p-3">Teacher ID</th>
+                <th className="p-3">Batch Name</th>
+                <th className="p-3">Batch Start Date</th>
+                <th className="p-3">Course Name</th>
                 <th className="p-3 text-right">Action</th>
+                <th className="p-3">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -129,22 +127,16 @@ const AdmittedCoursesTable = ({ data }) => {
                   className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50"
                 >
                   <td className="p-3">
-                    <p>{item.student}</p>
+                    <p>{item.teacher}</p>
                   </td>
                   <td className="p-3">
-                    <p>{item.batch_details?.batch_name}</p>
+                    <p>{item?.batch_deatils?.batch_name}</p>
                   </td>
                   <td className="p-3">
-                    <p>{item.course_fee}</p>
+                    <p>{item?.batch_deatils?.batch_start_date}</p>
                   </td>
                   <td className="p-3">
-                    <p>{item.payment}</p>
-                  </td>
-                  <td className="p-3">
-                    <p>{item.due}</p>
-                  </td>
-                  <td className="p-3">
-                    <p>{item.admission_date}</p>
+                    <p>{item?.course_details?.course_name}</p>
                   </td>
                   <td className="p-3 text-right">
                     <div className="flex justify-end gap-2">
@@ -156,7 +148,14 @@ const AdmittedCoursesTable = ({ data }) => {
                         <FaEye />
                       </Link>
                       <Link
-                        href={`/dashboard/admitted-courses/${item.id}/update-admit-course`}
+                        href={`/dashboard/batches/${item.id}/batch-details`}
+                        className="p-2 rounded bg-[#FBBD08] text-black hover:bg-[#e6ac07] transition-colors"
+                        title="View Teacher"
+                      >
+                        <FaUser />
+                      </Link>
+                      <Link
+                        href={`/dashboard/assigned-course/${item.id}/update-assign-course`}
                         className="p-2 rounded bg-[#FBBD08] text-black hover:bg-[#e6ac07] transition-colors"
                         title="Update"
                       >
@@ -164,53 +163,66 @@ const AdmittedCoursesTable = ({ data }) => {
                       </Link>
                       <button
                         onClick={() => deleteHandler(item.id)}
-                        className="p-2 cursor-pointer rounded bg-red-500 text-white hover:bg-red-600 transition-colors"
+                        className="p-2 rounded cursor-pointer bg-red-500 text-white hover:bg-red-600 transition-colors"
                         title="Delete"
                       >
                         <FaTrash />
                       </button>
                     </div>
                   </td>
+                  <td className="p-3">
+                    <span
+                      className={`px-3 py-1 font-semibold rounded-md ${
+                        item.batch_deatils?.status === 'ongoing'
+                          ? 'bg-[#FFC59121] text-[#AE8201]'
+                          : item.batch_deatils?.status === 'completed'
+                          ? 'bg-[#0892361A] text-[#089236]'
+                          : 'bg-[#E302020D] text-[#E35102]'
+                      }`}
+                    >
+                      <span>{item.batch_deatils?.status}</span>
+                    </span>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
 
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="flex justify-center items-center mt-6 space-x-2">
-            <button
-              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
-              className={`p-2 rounded-md ${currentPage === 1 ? 'bg-gray-200 cursor-not-allowed' : 'bg-[#FBBD08] hover:bg-[#e6ac07]'}`}
-            >
-              <FaChevronLeft />
-            </button>
-
-            {getPageNumbers().map((page, index) => (
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center mt-6 space-x-2">
               <button
-                key={index}
-                onClick={() => typeof page === 'number' ? setCurrentPage(page) : null}
-                className={`w-10 h-10 rounded-md ${currentPage === page ? 'bg-[#FBBD08] font-bold' : 'bg-gray-200 hover:bg-gray-300'} ${typeof page !== 'number' ? 'cursor-default' : ''}`}
-                disabled={page === '...'}
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className={`p-2 rounded-md ${currentPage === 1 ? 'bg-gray-200 cursor-not-allowed' : 'bg-[#FBBD08] hover:bg-[#e6ac07]'}`}
               >
-                {page}
+                <FaChevronLeft />
               </button>
-            ))}
 
-            <button
-              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-              disabled={currentPage === totalPages}
-              className={`p-2 rounded-md ${currentPage === totalPages ? 'bg-gray-200 cursor-not-allowed' : 'bg-[#FBBD08] hover:bg-[#e6ac07]'}`}
-            >
-              <FaChevronRight />
-            </button>
-          </div>
-        )}
+              {getPageNumbers().map((page, index) => (
+                <button
+                  key={index}
+                  onClick={() => typeof page === 'number' ? setCurrentPage(page) : null}
+                  className={`w-10 h-10 rounded-md ${currentPage === page ? 'bg-[#FBBD08] font-bold' : 'bg-gray-200 hover:bg-gray-300'} ${typeof page !== 'number' ? 'cursor-default' : ''}`}
+                  disabled={page === '...'}
+                >
+                  {page}
+                </button>
+              ))}
+
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className={`p-2 rounded-md ${currentPage === totalPages ? 'bg-gray-200 cursor-not-allowed' : 'bg-[#FBBD08] hover:bg-[#e6ac07]'}`}
+              >
+                <FaChevronRight />
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
-export default AdmittedCoursesTable;
+export default AssignedCourseTable;

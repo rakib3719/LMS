@@ -1,12 +1,11 @@
 'use client';
 import React, { useState } from 'react';
-import './admittedeCourse.css';
 import useGetData from '@/app/hooks/useGetData';
 import Link from 'next/link';
-import AdmittedCoursesTable from './AdmittedCoursesTable';
+import AssignedCourseTable from '../../common/assignedCourse/AssignedCourseTable';
 import { FaPlus, FaSearch } from 'react-icons/fa';
 
-const AdmitedCoursePage = () => {
+const CounselorAssignedCourse = () => {
     const [filter, setFilter] = useState('');
     const [searchInput, setSearchInput] = useState('');
     const [searchType, setSearchType] = useState('batch'); 
@@ -22,7 +21,7 @@ const AdmitedCoursePage = () => {
                 params.append('course_name', activeSearch);
             }
         }
-        return `/admitted-courses/?${params.toString()}`;
+        return `/assign-courses/?${params.toString()}`;
     };
 
     const { data, loading, error } = useGetData(buildApiUrl());
@@ -53,15 +52,15 @@ const AdmitedCoursePage = () => {
         <div className="p-4">
             <div className="mb-6">
                 <Link 
-                    href={'/dashboard/admitted-courses/admit-course'} 
+                    href={'/dashboard/assign-course/'} 
                     className='bg-[#FBBD08] hover:bg-[#e6ac07] text-black px-4 py-2 rounded-lg flex items-center gap-2 w-fit'
                 >
-                    <FaPlus /> Admit Course
+                    <FaPlus /> Assign Course
                 </Link>
             </div>
 
             <div className='flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4'>
-                <h1 className='text-2xl font-semibold'>Admitted Courses</h1>
+                <h1 className='text-2xl font-semibold'>Assigned Courses</h1>
                 
                 <div className="flex flex-col sm:flex-row gap-4">
                     {/* Search Input with Dropdown Button */}
@@ -109,9 +108,9 @@ const AdmitedCoursePage = () => {
                 </div>
             </div>
 
-            <AdmittedCoursesTable   data={data || []} />
+            <AssignedCourseTable data={data || []} />
         </div>
     );
 };
 
-export default AdmitedCoursePage;
+export default CounselorAssignedCourse;

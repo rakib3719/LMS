@@ -27,126 +27,124 @@ const BatchDetails = () => {
         )
     }
 
-    return (
-        <div className="max-w-6xl mx-auto px-4 py-8">
-            {/* Main Card */}
-            <div className="bg-white rounded-lg  overflow-hidden">
-                {/* Header Section */}
-                <div className="p-6 border-b border-gray-200 flex justify-between items-center">
-                    <div>
-                        <span className={`px-4 py-1 rounded-full text-sm font-medium ${
-                            data?.status === 'Ongoing' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
-                        }`}>
-                            {data?.status}
-                        </span>
-                        <h2 className="mt-2 text-2xl font-bold text-gray-800">{data?.batch_name}</h2>
-                    </div>
-                    <div className="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-lg">
-                        <p className="font-semibold">{data?.course_details?.course_category}</p>
-                    </div>
-                </div>
-
-                {/* Course Thumbnail */}
-                <div className="p-6">
-                    <div className="relative h-96 w-full rounded-lg overflow-hidden">
-                        <Image 
-                            src={data?.course_details?.course_thumbnail}
-                            alt={data?.course_details?.course_name}
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
-                    <p className="mt-2 text-sm text-gray-500">
-                        Batch Started: {new Date(data?.batch_start_date).toLocaleDateString()}
-                    </p>
-                </div>
-
-                {/* Course Details */}
-                <div className="p-6 space-y-6">
-                    {/* Course Title */}
-                    <div>
-                        <h1 className="text-3xl font-bold text-gray-900">{data?.course_details?.course_name}</h1>
-                        <p className="mt-2 text-gray-600">{data?.course_details?.short_summary}</p>
-                    </div>
-
-                    {/* Course Stats */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <p className="text-sm text-gray-500">Lectures</p>
-                            <p className="text-2xl font-bold">{data?.course_details?.no_of_lectures}</p>
-                        </div>
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <p className="text-sm text-gray-500">Projects</p>
-                            <p className="text-2xl font-bold">{data?.course_details?.no_of_projects}</p>
-                        </div>
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <p className="text-sm text-gray-500">Assessments</p>
-                            <p className="text-2xl font-bold">{data?.course_details?.no_of_assessments}</p>
-                        </div>
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <p className="text-sm text-gray-500">Duration</p>
-                            <p className="text-2xl font-bold">{data?.course_details?.course_duration}</p>
-                        </div>
-                    </div>
-
-                    {/* Course Fee */}
-                    <div className="bg-blue-50 p-4 rounded-lg">
-                        <p className="text-sm text-blue-500">Course Fee</p>
-                        <p className="text-3xl font-bold text-blue-700">
-                            ৳{data?.course_details?.course_fee?.toLocaleString()}
-                        </p>
-                    </div>
-
-                    {/* Who Can Join */}
-                    <div>
-                        <h2 className="text-2xl font-semibold mb-4">Who can join?</h2>
-                        <ul className="space-y-2 list-disc pl-5">
-                            {data?.course_details?.who_can_join?.map((item, index) => (
-                                <li key={index} className="text-gray-700">{item}</li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Course Overview */}
-                    <div>
-                        <h2 className="text-2xl font-semibold mb-4">Course Overview</h2>
-                        {data?.course_details?.course_overview?.map((overview, index) => (
-                            <div key={index} className="space-y-4">
-                                {Object.entries(overview).map(([key, value]) => (
-                                    key !== 'Summary' && (
-                                        <div key={key}>
-                                            <h3 className="text-lg font-medium text-gray-800">{key}</h3>
-                                            <p className="text-gray-600">{value}</p>
-                                        </div>
-                                    )
-                                ))}
-                                {overview.Summary && (
-                                    <div className="bg-gray-50 p-4 rounded-lg">
-                                        <h3 className="text-lg font-medium text-gray-800">Summary</h3>
-                                        <p className="text-gray-600">{overview.Summary}</p>
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Course Tools */}
-                    {data?.course_details?.course_tools && (
-                        <div>
-                            <h2 className="text-2xl font-semibold mb-4">Tools & Technologies</h2>
-                          
-                                    <div  className="bg-gray-200 px-3 py-1 rounded-full text-sm">
-                                  { data?.course_details?.course_tools}
-                                    </div>
-                           
-                            </div>
-                       
-                    )}
-                </div>
+  // Keep everything else the same except the JSX inside return
+return (
+    <div className="bg-white     min-h-screen text-white">
+      <div className="max-w-6xl mx-auto px-4 py-12">
+        <div className="bg-white rounded-xl overflow-hidden ">
+          {/* Header */}
+          <div className="p-6 border-b border-yellow-500 flex justify-between items-center">
+            <div>
+              <span className={`px-4 py-1 rounded-full text-sm font-medium ${
+                data?.status === 'Ongoing'
+                  ? 'bg-green-500 text-white'
+                  : 'bg-yellow-500 text-black'
+              }`}>
+                {data?.status}
+              </span>
+              <h2 className="mt-2 text-3xl font-bold text-white">{data?.batch_name}</h2>
             </div>
+            <div className="bg-yellow-500 text-black px-4 py-2 rounded-lg font-semibold">
+              {data?.course_details?.course_category}
+            </div>
+          </div>
+  
+          {/* Image */}
+          <div className="relative h-80 w-full">
+            <Image
+              src={data?.course_details?.course_thumbnail}
+              alt={data?.course_details?.course_name}
+              fill
+              className="object-cover rounded-2xl shadow"
+              priority
+            />
+          </div>
+          <div className="px-6 py-4 text-sm text-gray-900">
+            Batch Started: {new Date(data?.batch_start_date).toLocaleDateString()}
+          </div>
+  
+          {/* Course Info */}
+          <div className="p-6 space-y-6">
+            <div>
+              <h1 className="text-4xl font-bold text-black">{data?.course_details?.course_name}</h1>
+
+              <div className="grid py-4 grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                ['Lectures', data?.course_details?.no_of_lectures],
+                ['Projects', data?.course_details?.no_of_projects],
+                ['Assessments', data?.course_details?.no_of_assessments],
+                ['Duration', data?.course_details?.course_duration],
+              ].map(([label, value], i) => (
+                <div key={i} className="bg-white p-4 rounded-lg border border-gray-900">
+                  <p className="text-sm text-gray-900">{label}</p>
+                  <p className="text-2xl font-bold text-gray-900 ">{value}</p>
+                </div>
+              ))}
+            </div>
+
+
+              <p className="mt-2 text-gray-900">{data?.course_details?.short_summary}</p>
+            </div>
+  
+            {/* Stats */}
+      
+  
+            {/* Fee */}
+            <div className="bg-yellow-500 text-black p-6 rounded-lg text-center">
+              <p className="text-sm font-medium">Course Fee</p>
+              <p className="text-4xl font-extrabold mt-2">
+                ৳{data?.course_details?.course_fee?.toLocaleString()}
+              </p>
+            </div>
+  
+            {/* Who can join */}
+            <div>
+              <h2 className="text-2xl font-semibold text-yellow-400 mb-4">Who can join?</h2>
+              <ul className="list-disc pl-6 space-y-2 text-gray-300">
+                {data?.course_details?.who_can_join?.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            </div>
+  
+            {/* Overview */}
+            <div>
+              <h2 className="text-2xl font-semibold text-yellow-400 mb-4">Course Overview</h2>
+              {data?.course_details?.course_overview?.map((overview, idx) => (
+                <div key={idx} className="space-y-4 bg-[#1f1f1f] p-4 rounded-lg border border-gray-700">
+                  {Object.entries(overview).map(([key, value]) =>
+                    key !== 'Summary' ? (
+                      <div key={key}>
+                        <h3 className="text-lg font-semibold text-white">{key}</h3>
+                        <p className="text-gray-300">{value}</p>
+                      </div>
+                    ) : null
+                  )}
+                  {overview.Summary && (
+                    <div className="bg-[#2a2a2a] p-3 rounded-md">
+                      <h3 className="text-lg font-semibold text-white">Summary</h3>
+                      <p className="text-gray-300">{overview.Summary}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+  
+            {/* Tools */}
+            {data?.course_details?.course_tools && (
+              <div>
+                <h2 className="text-2xl font-semibold text-yellow-400 mb-2">Tools & Technologies</h2>
+                <div className="inline-block bg-yellow-600 text-black px-4 py-2 rounded-full text-sm">
+                  {data?.course_details?.course_tools}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
+  
 };
 
 export default BatchDetails;

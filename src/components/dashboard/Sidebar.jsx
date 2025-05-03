@@ -91,6 +91,13 @@ const Sidebar = () => {
         icon: <PiStackPlusFill className="text-lg" />,
 
       },
+
+      {
+        menuName: "Assigned Course",
+        link: "/dashboard/assigned-course",
+        icon: <BsStack className="text-lg" />,
+  
+      },
       {
         menuName: "Class Schedule",
         link: "/dashboard/class-schedule",

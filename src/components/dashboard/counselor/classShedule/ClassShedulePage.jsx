@@ -57,7 +57,7 @@ const ClassShedulePage = () => {
     }
 
     return (
-        <div className="p-4">
+        <div className="py-4">
             <div className="mb-6">
                 <Link 
                     href={'/dashboard/class-schedule/create-class-schedule'} 
@@ -77,7 +77,7 @@ const ClassShedulePage = () => {
                         <select
                             onChange={handleSearchTypeChange}
                             value={searchType}
-                            className="bg-[#F0F1F2] border border-gray-300 text-gray-700 p-2 rounded-l-lg focus:ring-2 focus:ring-[#FBBD08] focus:border-[#FBBD08] outline-none"
+                            className="bg-[#F0F1F2] border border-gray-300 text-gray-700 p-2 rounded-l-lg  outline-none"
                         >
                             <option value="batch">Search by Batch</option>
                             <option value="course">Search by Course</option>
@@ -94,7 +94,7 @@ const ClassShedulePage = () => {
                                 searchType === 'teacher' ? 'Enter teacher ID...' :
                                 'Enter date (YYYY-MM-DD)...'
                             }
-                            className="p-2 border border-gray-300 focus:ring-2 focus:ring-[#FBBD08] focus:border-[#FBBD08] w-full outline-none"
+                            className="p-2 border border-gray-300  w-full outline-none"
                             value={searchInput}
                             onChange={(e) => setSearchInput(e.target.value)}
                             onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
@@ -113,7 +113,7 @@ const ClassShedulePage = () => {
                     <select
                         onChange={filterHandler}
                         value={filter}
-                        className="p-2 border border-gray-300 bg-[#F0F1F2] text-gray-900 rounded-lg focus:ring-2 focus:ring-[#FBBD08] focus:border-[#FBBD08] outline-none"
+                        className="p-2 border border-gray-300 bg-[#F0F1F2] text-gray-900 rounded-lg  outline-none"
                     >
                         <option value="">All Status</option>
                         <option value="ongoing">Ongoing</option>

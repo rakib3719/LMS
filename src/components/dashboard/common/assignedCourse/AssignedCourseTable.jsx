@@ -136,7 +136,7 @@ const AssignedCourseTable = ({ data }) => {
                     <p>{item?.batch_deatils?.batch_start_date}</p>
                   </td>
                   <td className="p-3">
-                    <p>{item?.course_details?.course_name}</p>
+                    <p>{item?.batch_deatils?.course_details?.course_name}</p>
                   </td>
                   <td className="p-3 text-right">
                     <div className="flex justify-end gap-2">

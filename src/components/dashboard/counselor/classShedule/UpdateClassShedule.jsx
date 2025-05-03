@@ -54,7 +54,7 @@ const UpdateClassShedule = ({ id }) => {
     if (SheduleError) return <div>Error loading schedule data</div>;
 
     return (
-        <div className="max-w-6xl mx-auto p-8 bg-white rounded">
+        <div className=" mx-auto py-8 bg-white rounded">
             <h2 className="text-2xl font-semibold mb-6 border-b border-gray-200 pb-4">
                 Update Class Schedule - {schedule.class_title}
             </h2>

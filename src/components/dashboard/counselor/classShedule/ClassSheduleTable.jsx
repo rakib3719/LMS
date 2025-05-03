@@ -99,7 +99,7 @@ const CalassSheduleTable = ({ data }) => {
                   <td className="p-3">{item.class_title}</td>
                   <td className="p-3">{item.batch}</td>
                   <td className="p-3">{item.teacher}</td>
-                  <td className="p-3">{item.start_time}</td>
+                  <td className="p-3">{item.class_start}</td>
                   <td className="p-3 text-right">
                     <div className="flex justify-end gap-2">
                       <Link

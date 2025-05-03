@@ -72,7 +72,7 @@ const UpdateAdmitCourse = ({ id }) => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-8 bg-white">
+    <div className="mx-auto py-8 bg-white">
       <h2 className="text-2xl font-semibold mb-6 border-b border-gray-200 pb-4">Update Student Admission</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">

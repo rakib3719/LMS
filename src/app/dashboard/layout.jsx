@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
 
                         <div className="w-full min-h-screen   ">
                             <Header />
-                            <div className="p-[5%] ">
+                            <div className="  px-4 sm:p-[5%] ">
                                 {children}
                             </div>
                         </div>

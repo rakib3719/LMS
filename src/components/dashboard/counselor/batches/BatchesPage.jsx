@@ -50,7 +50,7 @@ const BatchesPage = () => {
     }
 
     return (
-        <div className="p-4">
+        <div className="py-4">
             <div className="mb-6">
                 <Link 
                     href={'/dashboard/batches/create-batch'} 
@@ -65,22 +65,23 @@ const BatchesPage = () => {
                 
                 <div className="flex flex-col sm:flex-row gap-4">
                     {/* Search Input with Dropdown Button */}
-                    <div className="relative flex">
+                    <div className="relative flex ">
                         {/* Search Type Dropdown */}
                         <select
                             onChange={handleSearchTypeChange}
                             value={searchType}
-                            className="bg-[#F0F1F2] border border-gray-300 text-gray-700 p-2 rounded-l-lg focus:ring-2 focus:ring-[#FBBD08] focus:border-[#FBBD08] outline-none"
+                            className="bg-[#F0F1F2] border border-gray-300 text-gray-700 p-2 rounded-l-lg  "
                         >
-                            <option value="batch">Search by Batch</option>
+                            <option value="batch"  >Search by Batch</option>
                             <option value="course">Search by Course</option>
+                     
                         </select>
                         
                         {/* Search Input */}
                         <input
                             type="text"
                             placeholder={searchType === 'batch' ? 'Enter batch name...' : 'Enter course name...'}
-                            className="p-2 border border-gray-300 focus:ring-2 focus:ring-[#FBBD08] focus:border-[#FBBD08] w-full outline-none"
+                            className="p-2 border border-gray-300   w-full outline-none"
                             value={searchInput}
                             onChange={(e) => setSearchInput(e.target.value)}
                             onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
@@ -89,7 +90,7 @@ const BatchesPage = () => {
                         {/* Search Button */}
                         <button
                             onClick={handleSearch}
-                            className="bg-black text-white px-4 rounded-r-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#FBBD08] flex items-center gap-2"
+                            className="bg-black text-white px-4 rounded-r-lg hover:bg-gray-800 focus:outline-none  focus:ring-[#FBBD08] flex items-center gap-2"
                         >
                             <FaSearch /> Search
                         </button>
@@ -99,7 +100,7 @@ const BatchesPage = () => {
                     <select
                         onChange={filterHandler}
                         value={filter}
-                        className="p-2 border border-gray-300 bg-[#F0F1F2] text-gray-900 rounded-lg focus:ring-2 focus:ring-[#FBBD08] focus:border-[#FBBD08] outline-none"
+                        className="p-2 border border-gray-300 bg-[#F0F1F2] text-gray-900 rounded-lg  "
                     >
                         <option value="">All Status</option>
                         <option value="ongoing">Ongoing</option>

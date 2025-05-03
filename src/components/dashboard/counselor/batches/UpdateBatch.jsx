@@ -51,7 +51,7 @@ const UpdateBatch = ({ id }) => {
   if (batch.error) return <div>Error loading batch data</div>;
 
   return (
-    <div className="max-w-6xl mx-auto p-8 bg-white">
+    <div className=" mx-auto py-8 bg-white">
       <h2 className="text-2xl font-semibold mb-6 border-b border-gray-200 pb-4">
         Update Batch - {batch.data.batch_name}
       </h2>

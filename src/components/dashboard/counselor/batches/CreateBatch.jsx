@@ -60,7 +60,7 @@ const CreateBatch = () => {
         formState: { errors },
       } = useForm()
     return (
-        <div className="max-w-6xl mx-auto  p-8 bg-white ">
+        <div className=" mx-auto   bg-white ">
         <h2 className="text-2xl font-semibold mb-6 border-b border-gray-200 pb-4">Create New Batch</h2>
         <form onSubmit={ handleSubmit( submitHandler)}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">

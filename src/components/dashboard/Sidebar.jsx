@@ -16,10 +16,10 @@ import { TbUserQuestion } from "react-icons/tb";
 import { CgFileDocument } from "react-icons/cg";
 import { MdAssignmentAdd, MdMenu, MdOutlineMenuOpen, MdOutlineQuiz, MdPayment } from 'react-icons/md';
 import { BsStack } from "react-icons/bs";
-import { FaChalkboardTeacher, FaRegUser } from 'react-icons/fa';
+import { FaChalkboardTeacher, FaRegistered, FaRegRegistered, FaRegUser } from 'react-icons/fa';
 import { PiStackPlusFill, PiUsersFour } from "react-icons/pi";
 import { AiOutlineSchedule } from "react-icons/ai";
-import { IoFolderOpenOutline } from "react-icons/io5";
+import { IoFolderOpenOutline, IoPersonAdd } from "react-icons/io5";
 import { GrCertificate } from "react-icons/gr";
 
 
@@ -39,6 +39,16 @@ const Sidebar = () => {
 
 
   // counselor menu
+
+
+  const superAdminMenu = [
+
+    {
+      menuName: "Create Counselor",
+      link: "/dashboard/create-counselor",
+      icon: <IoPersonAdd className="text-lg" />,
+    }
+  ]
 
 
   const counselorMenu =
@@ -352,6 +362,42 @@ const Sidebar = () => {
 
 
           </div>
+
+
+{/* super admin */}
+<div>
+          {superAdminMenu.map((item) => (
+              <div key={item.menuName} className="mb-1">
+              <Link   href={item.link}>
+              
+              <motion.div
+                  onClick={() => item.link ? toggleSubmenu(item.link) : null}
+                  className={`flex text-[#00000099] items-center justify-between p-2 rounded-lg cursor-pointer
+                  ${activeMenu === item.link ? 'bg-black hover:text-white text-white' : 'hover:bg-[black] hover:text-white'}
+                `}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div
+                    className="flex items-center gap-3"
+                    onClick={() => !item.submenu && setActiveMenu(item.link)}
+                  >
+                    <span className={`${activeMenu === item.link ? 'text-white' : ''}`}>
+                      {item.icon}
+                    </span>
+                    <span className="text-base font-medium">{item.menuName}</span>
+                  </div>
+
+
+                </motion.div></Link>
+
+              </div>
+            ))}
+
+
+          </div>
+
+
 
           {/* stduent */}
           {/* <div>

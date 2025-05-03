@@ -16,6 +16,9 @@
 
   /*  */
 
+
+ 
+
   /* text */
   .text-small {
     @apply text-[12px];
@@ -73,6 +76,10 @@
   .text-secondary {
     color: gray;
   }
+
+
+
+
 }
 
 /* bg colors */

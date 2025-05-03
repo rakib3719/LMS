@@ -1,9 +1,11 @@
+import ClassShedulePage from '@/components/dashboard/counselor/classShedule/ClassShedulePage';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            <h1>class-schedule</h1>
+            <ClassShedulePage/>
+     
         </div>
     );
 };

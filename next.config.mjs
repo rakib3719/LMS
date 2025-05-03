@@ -1,15 +1,22 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'api.eduden.mrshakil.com',
+          pathname: '/media/teachers/picture/**',
+        },
+        {
+          protocol: 'https',
+          hostname: 'api.eduden.mrshakil.com',
+          pathname: '/media/students/picture/**',
+        },
+      ],
+    },
+  }
+  
+  export default nextConfig
+  
 
-export default nextConfig;
 
-// import { join } from 'path';
-
-// const nextConfig = {
-//   webpack: (config) => {
-//     config.resolve.alias['@'] = join(__dirname, 'src');
-//     return config;
-//   },
-// };
-
-// export default nextConfig;

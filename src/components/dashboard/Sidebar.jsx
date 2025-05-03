@@ -17,7 +17,7 @@ import { CgFileDocument } from "react-icons/cg";
 import { MdAssignmentAdd, MdMenu, MdOutlineMenuOpen, MdOutlineQuiz, MdPayment } from 'react-icons/md';
 import { BsStack } from "react-icons/bs";
 import { FaChalkboardTeacher, FaRegUser } from 'react-icons/fa';
-import { PiUsersFour } from "react-icons/pi";
+import { PiStackPlusFill, PiUsersFour } from "react-icons/pi";
 import { AiOutlineSchedule } from "react-icons/ai";
 import { IoFolderOpenOutline } from "react-icons/io5";
 import { GrCertificate } from "react-icons/gr";
@@ -83,6 +83,20 @@ const Sidebar = () => {
         link: "/dashboard/batches",
         icon: <PiUsersFour className="text-lg" />,
 
+      },
+
+      {
+        menuName: "Admitted Courses",
+        link: "/dashboard/admitted-courses",
+        icon: <PiStackPlusFill className="text-lg" />,
+
+      },
+
+      {
+        menuName: "Assigned Course",
+        link: "/dashboard/assigned-course",
+        icon: <BsStack className="text-lg" />,
+  
       },
       {
         menuName: "Class Schedule",
@@ -216,7 +230,7 @@ const Sidebar = () => {
     <div>
 
 
-      <div className='fixed top-[25px]  left-4 z-50 lg:hidden '>
+      <div className='fixed top-[25px]    left-4 z-50 lg:hidden '>
         {
           showMenu ? (
             <IoMdClose className="text-gray-700 text-2xl cursor-pointer" onClick={toggleMenu} />
@@ -227,7 +241,9 @@ const Sidebar = () => {
       </div>
 
 
-      <div className={`hidden lg:block fixed duration-700 top-60 z-50  ${!showMenuPc ? 'left-[24vw] 2xl:left-[19.5vw]' : 'left-0'}`}>
+
+      <div className={`hidden lg:block fixed duration-700 top-60 z-50  ${!showMenuPc ? 'left-[24vw] 2xl:left-[19vw]' : 'left-0'}`}>
+
         {!showMenuPc ? <IoIosCloseCircleOutline
 
           onClick={toggleMenuPc}
@@ -250,7 +266,7 @@ const Sidebar = () => {
       {/* <div className='hidden lg:block w-[250px]  absolute'>
 
     </div> */}
-      <div className={`fixed top-16  ${showMenuPc ? '-ml-[25vw] 2xl:-ml-[20vw] duration-700' : 'ml-0 duration-700'} lg:sticky  text-white bg-white w-[25vw] 2xl:w-[20vw] h-screen p-6 lg:top-0 overflow-y-auto shadow-lg transition-all duration-300 ease-in-out ${showMenu ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
+      <div className={`fixed top-16  ${showMenuPc ? '-ml-[25vw] 2xl:-ml-[20vw] duration-700' : 'ml-0 duration-700'} lg:sticky  text-white bg-white w-[250px] sm:w-[300px] mt-4 lg:mt-0 lg:w-[25vw] 2xl:w-[20vw] h-screen p-6 lg:top-0 overflow-y-auto shadow-lg transition-all duration-300 ease-in-out ${showMenu ? 'translate-x-0 min-h-screen ' : '-translate-x-full'} lg:translate-x-0`}>
         {/* Logo Section */}
         {/* <div className={`fixed top-16 ${showMenuPc ? '-ml-[250px] duration-700' : 'ml-0 duration-700'} lg:sticky bg-white w-[250px] h-screen p-6 lg:top-0 overflow-y-auto shadow-lg transition-all duration-300 ease-in-out ${showMenu ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}> */}
 

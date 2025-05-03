@@ -1,11 +1,10 @@
-
-import BatchesPage from '@/components/dashboard/counselor/batches/BatchesPage';
+import CreateBatch from '@/components/dashboard/counselor/batches/CreateBatch';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-           <BatchesPage/>
+          <CreateBatch  />
         </div>
     );
 };

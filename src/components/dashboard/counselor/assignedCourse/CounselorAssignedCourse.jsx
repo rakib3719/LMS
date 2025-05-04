@@ -53,7 +53,7 @@ const CounselorAssignedCourse = () => {
             <div className="mb-6">
                 <Link 
                     href={'/dashboard/assign-course/'} 
-                    className='bg-[#FBBD08] hover:bg-[#e6ac07] text-black px-4 py-2 rounded-lg flex items-center gap-2 w-fit'
+                    className='bg-black text-white text-black px-4 py-2 rounded-lg flex items-center gap-2 w-fit'
                 >
                     <FaPlus /> Assign Course
                 </Link>

@@ -86,7 +86,7 @@ const BatchesTable = ({ data }) => {
 
   return (
     <div>
-      <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+      <div className="container py-2 mx-auto sm:py-4 dark:text-gray-800">
         <h2 className="mb-4 text-2xl font-semibold leading-tight"></h2>
         <div className="overflow-x-auto">
           <table className="min-w-full text-sm">
@@ -130,14 +130,14 @@ const BatchesTable = ({ data }) => {
                     <div className="flex justify-end gap-2">
                       <Link
                         href={`/dashboard/batches/${item.id}/batch-details`}
-                        className="p-2 rounded bg-[#FBBD08] text-black hover:bg-[#e6ac07] transition-colors"
+                        className="p-2 rounded bg-black text-white transition-colors"
                         title="Details"
                       >
                         <FaEye />
                       </Link>
                       <Link
                         href={`/dashboard/batches/${item.id}/update-batch`}
-                        className="p-2 rounded bg-[#FBBD08] text-black hover:bg-[#e6ac07] transition-colors"
+                        className="p-2 rounded bg-green-800 text-white transition-colors"
                         title="Update"
                       >
                         <FaEdit />
@@ -175,7 +175,7 @@ const BatchesTable = ({ data }) => {
               <button
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
-                className={`p-2 rounded-md ${currentPage === 1 ? 'bg-gray-200 cursor-not-allowed' : 'bg-[#FBBD08] hover:bg-[#e6ac07]'}`}
+                className={`p-2 rounded-md ${currentPage === 1 ? 'bg-gray-200 cursor-not-allowed' : 'bg-gray-200'}`}
               >
                 <FaChevronLeft />
               </button>
@@ -186,7 +186,7 @@ const BatchesTable = ({ data }) => {
                   onClick={() => typeof page === 'number' && setCurrentPage(page)}
                   disabled={page === '...'}
                   className={`w-10 h-10 rounded-md ${
-                    currentPage === page ? 'bg-[#FBBD08] font-bold' : 'bg-gray-200 hover:bg-gray-300'
+                    currentPage === page ? 'bg-black text-white font-bold' : 'bg-gray-200 hover:bg-gray-300'
                   } ${typeof page !== 'number' ? 'cursor-default' : ''}`}
                 >
                   {page}
@@ -196,7 +196,7 @@ const BatchesTable = ({ data }) => {
               <button
                 onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                 disabled={currentPage === totalPages}
-                className={`p-2 rounded-md ${currentPage === totalPages ? 'bg-gray-200 cursor-not-allowed' : 'bg-[#FBBD08] hover:bg-[#e6ac07]'}`}
+                className={`p-2 rounded-md ${currentPage === totalPages ? 'bg-gray-200 cursor-not-allowed' : 'bg-gray-200 text-white'}`}
               >
                 <FaChevronRight />
               </button>

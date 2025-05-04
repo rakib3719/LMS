@@ -1,9 +1,10 @@
+import MyProfilePage from '@/components/dashboard/common/MyProfilePage';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            <h1>my-profile</h1>
+           <MyProfilePage/>
         </div>
     );
 };

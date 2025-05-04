@@ -1,5 +1,5 @@
 'use client';
-import useGetData from '@/app/hooks/useGetData';
+
 import { base_url } from '@/app/utils/api';
 import axios from 'axios';
 import Link from 'next/link';
@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import { FaEye, FaUser, FaEdit, FaTrash, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
-const AssignedCourseTable = ({ data }) => {
+const  AssignedCourseTableComponent = ({ data }) => {
   const [newData, setData] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -55,49 +55,11 @@ const AssignedCourseTable = ({ data }) => {
     return pages;
   };
 
-  const deleteHandler = async (id) => {
-    const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'Cancel'
-    });
 
-    if (!result.isConfirmed) return;
-
-    try {
-      const resp = await axios.delete(`${base_url}/assign-courses/${id}/`);
-      if (resp.status === 204) {
-        const newDataAfterDelete = newData.filter(item => item.id !== id);
-        setData(newDataAfterDelete);
-        
-        await Swal.fire(
-          'Deleted!',
-          'Admission record has been deleted.',
-          'success'
-        );
-        
-        // Reset to first page if current page becomes empty
-        if (currentItems.length === 1 && currentPage > 1) {
-          setCurrentPage(currentPage - 1);
-        }
-      }
-    } catch (error) {
-      console.error(error);
-      Swal.fire(
-        'Error!',
-        'Something went wrong while deleting the record.',
-        'error'
-      );
-    }
-  };
 
   return (
     <div>
+        <h1 className='text-2xl font-semibold'>Assign Course</h1>
       <div className="container py-2 mx-auto sm:py-4 dark:text-gray-800">
         <h2 className="mb-4 text-2xl font-semibold leading-tight"></h2>
         <div className="overflow-x-auto">
@@ -116,12 +78,12 @@ const AssignedCourseTable = ({ data }) => {
                 <th className="p-3">Batch Name</th>
                 <th className="p-3">Batch Start Date</th>
                 <th className="p-3">Course Name</th>
-                <th className="p-3 text-right">Action</th>
+           
                 <th className="p-3">Status</th>
               </tr>
             </thead>
             <tbody>
-              {currentItems.map((item) => (
+              {data.map((item) => (
                 <tr
                   key={item.id}
                   className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50"
@@ -138,26 +100,7 @@ const AssignedCourseTable = ({ data }) => {
                   <td className="p-3">
                     <p>{item?.batch_deatils?.course_details?.course_name}</p>
                   </td>
-                  <td className="p-3 text-right">
-                    <div className="flex justify-end gap-2">
-                 
-                   
-                      <Link
-                        href={`/dashboard/assigned-course/${item.id}/update-assign-course`}
-                        className="p-2 rounded bg-green-800  text-white transition-colors"
-                        title="Update"
-                      >
-                        <FaEdit />
-                      </Link>
-                      <button
-                        onClick={() => deleteHandler(item.id)}
-                        className="p-2 rounded cursor-pointer bg-red-500 text-white hover:bg-red-600 transition-colors"
-                        title="Delete"
-                      >
-                        <FaTrash />
-                      </button>
-                    </div>
-                  </td>
+             
                   <td className="p-3">
                     <span
                       className={`px-3 py-1 font-semibold rounded-md ${
@@ -191,7 +134,7 @@ const AssignedCourseTable = ({ data }) => {
                 <button
                   key={index}
                   onClick={() => typeof page === 'number' ? setCurrentPage(page) : null}
-                  className={`w-10 h-10 rounded-md ${currentPage === page ? 'bg-[#FBBD08] font-bold' : 'bg-gray-200 hover:bg-gray-300'} ${typeof page !== 'number' ? 'cursor-default' : ''}`}
+                  className={`w-10 h-10 rounded-md ${currentPage === page ? 'bg-black text-white font-bold' : 'bg-gray-200 hover:bg-gray-300'} ${typeof page !== 'number' ? 'cursor-default' : ''}`}
                   disabled={page === '...'}
                 >
                   {page}
@@ -213,4 +156,28 @@ const AssignedCourseTable = ({ data }) => {
   );
 };
 
-export default AssignedCourseTable;
+
+
+
+
+
+import useGetData from '@/app/hooks/useGetData';
+
+const AssignCourseTable = () => {
+
+    const {data, isLoading, error} = useGetData('/assign-courses/')
+
+    if(isLoading){
+        return <h1>Loading...</h1>
+    }
+    if(error){
+        return <h1>Something went wrong!</h1>
+    }
+    return (
+        <div>
+                   <AssignedCourseTableComponent  data={data || []} />
+        </div>
+    );
+};
+
+export default AssignCourseTable;

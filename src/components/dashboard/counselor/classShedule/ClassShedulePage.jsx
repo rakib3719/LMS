@@ -61,7 +61,7 @@ const ClassShedulePage = () => {
             <div className="mb-6">
                 <Link 
                     href={'/dashboard/class-schedule/create-class-schedule'} 
-                    className='bg-[#FBBD08] hover:bg-[#e6ac07] text-black px-4 py-2 rounded-lg flex items-center gap-2 w-fit'
+                    className='bg-black text-white text-black px-4 py-2 rounded-lg flex items-center gap-2 w-fit'
                 >
                     <FaPlus /> Create Class Shedule
                 </Link>

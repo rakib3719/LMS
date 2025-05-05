@@ -7,7 +7,7 @@ import { base_url } from '@/app/utils/api';
 import Swal from 'sweetalert2';
 
 const UpdateBatch = ({ id }) => {
-  const { data: courses, loading, error } = useGetData('/courses/');
+  const { data: courses, loading, error } = useGetData('/course-ref/');
   const batch = useGetData(`/batches/${id}/`);
 
   const submitHandler = async (e) => {

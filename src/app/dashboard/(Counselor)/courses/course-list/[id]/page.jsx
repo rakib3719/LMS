@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import Swal from 'sweetalert2'
 import { FaMinus, FaPlus } from 'react-icons/fa'
 
@@ -14,6 +14,7 @@ export default function EditCoursePage () {
   const [courseOverview, setCourseOverview] = useState([])
   const [whoCanJoin, setWhoCanJoin] = useState([])
   const [courseBenefits, setCourseBenefits] = useState([])
+  const router = useRouter()
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -87,6 +88,7 @@ export default function EditCoursePage () {
         }
       )
       Swal.fire('Success', 'Course updated successfully!', 'success')
+      router.push('/dashboard/courses/course-list')
       setLoading(false)
     } catch (err) {
       console.error('Failed to update course', err)

@@ -66,7 +66,7 @@ const Attenddence = ({id}) => {
             const resp =await axios.post(`${base_url}/student-attendances/${id}/submit-attendance/`, attendences)
             console.log(resp, 'submit korar por ki ase dekhi');
     
-            if(resp.status === 201){
+            if(resp.status === 201 || resp.status === 207){
     
            Swal.fire({
                           title: "Success",
@@ -76,6 +76,7 @@ const Attenddence = ({id}) => {
                 
             }
         } catch (error) {
+            
             Swal.fire({
                 title: "error",
                 text: error?.message || 'Something went wrong!!!',

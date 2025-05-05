@@ -11,7 +11,7 @@ const AssignCourse = () => {
     data: teachers,
     loading: teachersLoading,
     error: teachersError,
-  } = useGetData('/teachers/');
+  } = useGetData('/teacher-ref/');
 
   const {
     data: batches,
@@ -79,7 +79,7 @@ const AssignCourse = () => {
                   {teachers &&
                     teachers.map((t) => (
                       <option key={t.id} value={t.id}>
-                        {t.teacher_id}
+                        {t.user}
                       </option>
                     ))}
                 </>

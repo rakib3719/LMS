@@ -1,9 +1,10 @@
+import UpdateClassMetarials from '@/components/teacher/UpdateClassMetarials';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            <h1>course-material</h1>
+            <UpdateClassMetarials/>
         </div>
     );
 };

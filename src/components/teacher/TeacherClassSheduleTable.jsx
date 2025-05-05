@@ -1,12 +1,13 @@
 'use client';
-import { base_url } from '@/app/utils/api';
-import axios from 'axios';
+
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { FaEye, FaEdit, FaTrash, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import Swal from 'sweetalert2';
+import {  FaChevronLeft, FaChevronRight, FaUpload } from 'react-icons/fa';
 
-const CalassSheduleTable = ({ data }) => {
+
+const  TeacherCalassSheduleTable = ({ data }) => {
+
+
   const [newData, setData] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -45,39 +46,12 @@ const CalassSheduleTable = ({ data }) => {
     return pages;
   };
 
-  const deleteHandaler = async (id) => {
-    const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'Cancel'
-    });
-
-    if (!result.isConfirmed) return;
-
-    try {
-      const resp = await axios.delete(`${base_url}/class-schedules/${id}/`);
-      if (resp.status === 204) {
-        const newDataAfterDelete = newData.filter(item => item.id !== id);
-        setData(newDataAfterDelete);
-        await Swal.fire('Deleted!', 'Class Schedule record has been deleted.', 'success');
-        
-        if (currentItems.length === 1 && currentPage > 1) {
-          setCurrentPage(currentPage - 1);
-        }
-      }
-    } catch (error) {
-      console.error(error);
-      Swal.fire('Error!', 'Something went wrong while deleting the record.', 'error');
-    }
-  };
+ 
 
   return (
     <div>
+
+        <h1 className='text-2xl font-semibold'>Class Schedule</h1>
       <div className="container py-2 mx-auto sm:py-4 dark:text-gray-800">
    
         <div className="overflow-x-auto">
@@ -89,42 +63,44 @@ const CalassSheduleTable = ({ data }) => {
                 <th className="p-3">Batch</th>
                 <th className="p-3">Teacher</th>
                 <th className="p-3">Start Time</th>
-                <th className="p-3 text-right">Actions</th>
+                <th className="p-3"> Class Metarials</th>
+             
               </tr>
             </thead>
             <tbody>
-              {currentItems.map((item) => (
+              {data.map((item) => (
                 <tr key={item.id} className="border-b dark:border-gray-300 dark:bg-gray-50">
                   <td className="p-3">{item.class_no}</td>
                   <td className="p-3">{item.class_title}</td>
                   <td className="p-3">{item.batch}</td>
                   <td className="p-3">{item.teacher}</td>
                   <td className="p-3">{item.class_start}</td>
-                  <td className="p-3 text-right">
-                    <div className="flex justify-end gap-2">
-                      {/* <Link
-                        href={`/dashboard/class-schedule/${item.id}/view`}
-                        className="p-2 bg-black rounded text-white "
-                        title="View"
-                      >
-                        <FaEye />
-                      </Link> */}
-                      <Link
-                        href={`/dashboard/class-schedule/${item.id}/update-class-shedule`}
-                        className="p-2 bg-green-800 rounded text-white "
-                        title="Edit"
-                      >
-                        <FaEdit />
-                      </Link>
-                      <button
-                        onClick={() => deleteHandaler(item.id)}
-                        className="p-2 bg-red-500 text-white rounded hover:bg-red-600"
-                        title="Delete"
-                      >
-                        <FaTrash />
-                      </button>
-                    </div>
+                  <td className="p-3">
+
+
+                 <div className='flex gap-2'>
+                 <Link
+                                           href={`/dashboard/class-metarials/${item.id}/class-metarials-view`}
+                                           className="p-2 bg-green-800 rounded text-white "
+                                    
+                                         >
+                                           Class Metarials
+                                         </Link>
+    
+                 </div>
+
+
                   </td>
+                         {/* <td className=''>
+                         <Link
+                                           href={`/dashboard/upload-course-material/?id=${item.id}`}
+                                           className="p-2 bg-green-800 rounded text-white "
+                                           title="Edit"
+                                         >
+                                           <FaUpload />
+                                         </Link>
+                         </td> */}
+                
                 </tr>
               ))}
             </tbody>
@@ -169,4 +145,4 @@ const CalassSheduleTable = ({ data }) => {
   );
 };
 
-export default CalassSheduleTable;
+export default TeacherCalassSheduleTable;

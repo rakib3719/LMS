@@ -11,13 +11,13 @@ const AdmitCourse = () => {
     data: students,
     loading: studentsLoading,
     error: studentsError
-  } = useGetData('/students/');
+  } = useGetData('/student-ref/');
 
   const {
     data: batches,
     loading: batchesLoading,
     error: batchesError
-  } = useGetData('/batches/');
+  } = useGetData('/batch-ref/');
 
   const {
     register,

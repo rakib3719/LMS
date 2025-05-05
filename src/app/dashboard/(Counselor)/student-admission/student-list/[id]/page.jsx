@@ -245,7 +245,7 @@ const Page = () => {
           </>
         )}
 
-        <div className='md:col-span-2'>
+        <div className=''>
           <label className='block mb-1 font-medium'>Profile Picture</label>
 
           {/* Preview Current Image */}

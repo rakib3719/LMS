@@ -30,6 +30,7 @@ const CreateClassSchedule = () => {
     });
 
     if (!result.isConfirmed) return;
+    console.log(formData, 'class schedule');
 
     try {
       const response = await axios.post(`${base_url}/class-schedules/`, formData);

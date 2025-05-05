@@ -69,7 +69,7 @@ const UpdateAssignCourse = ({id}) => {
     };
 
     return (
-        <div className="max-w-2xl bg-white border border-gray-500 rounded mx-auto p-6">
+        <div className=" bg-white  rounded  py-6">
             <form onSubmit={submitHandle} className="space-y-6">
                 <div className="space-y-8 bg-white p-8 rounded-lg">
                     <h2 className="text-2xl font-semibold text-gray-800">Update Assign course</h2>
@@ -132,7 +132,7 @@ const UpdateAssignCourse = ({id}) => {
                     <div className="pt-4">
                         <button
                             type="submit"
-                            className="w-full cursor-pointer bg-amber-600 hover:bg-amber-700 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+                            className=" cursor-pointer bg-black text-white font-medium py-2 px-4 rounded-md focus:outline-none "
                         >
                        Update Assign course
                         </button>

@@ -1,10 +1,10 @@
-import StudentAttendencepage from '@/components/teacher/StudentAttendencepage';
+import UploadClassMaterials from '@/components/teacher/UploadClassMetarials';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-        <StudentAttendencepage/>
+           <UploadClassMaterials/>
         </div>
     );
 };

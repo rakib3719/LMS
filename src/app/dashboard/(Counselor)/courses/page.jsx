@@ -4,6 +4,8 @@ import { useForm, useFieldArray } from 'react-hook-form'
 import Swal from 'sweetalert2'
 import axios from 'axios'
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai'
+import CommonBtn from '@/components/commonUtilites/CommonBtn'
+import { MdArrowForwardIos } from 'react-icons/md'
 
 const page = () => {
   const {
@@ -78,15 +80,15 @@ const page = () => {
         icon: 'question',
         showCancelButton: true,
         confirmButtonText: 'Yes, create it!',
-        cancelButtonText: 'Cancel', 
-        confirmButtonColor : "#111"
+        cancelButtonText: 'Cancel',
+        confirmButtonColor: '#111'
       })
-  
+
       if (!confirm.isConfirmed) {
         setLoading(false)
         return
       }
-  
+
       const formData = new FormData()
       for (const key in data) {
         if (key === 'course_thumbnail' && data[key][0]) {
@@ -97,7 +99,7 @@ const page = () => {
           formData.append(key, data[key])
         }
       }
-  
+
       const response = await axios.post(
         'https://api.eduden.mrshakil.com/api/courses/',
         formData,
@@ -105,7 +107,7 @@ const page = () => {
           headers: { 'Content-Type': 'multipart/form-data' }
         }
       )
-  
+
       Swal.fire('Success!', 'Course created successfully', 'success')
       console.log(response)
       reset()
@@ -115,13 +117,19 @@ const page = () => {
       setLoading(false)
     }
   }
-  
 
   return (
     <section>
-      <h2 className='mb-[5vh] text-2xl font-semibold text-gray-700'>
+      <div className='flex justify-between items-center mb-[5vh] border-b pb-5 border-black/10 '>
+        <h2 className='text-xl font-medium  text-black/80'>
         Create New Course
-      </h2>
+        </h2>
+        <CommonBtn
+          text='Course List'
+          icon={MdArrowForwardIos}
+          link='/dashboard/courses/course-list'
+        />
+      </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className=' space-y-6 bg-white rounded outline-none '
@@ -407,11 +415,11 @@ const page = () => {
 
         <button
           type='submit'
-          className={`px-6 my-[5vh] bg-[#111] text-white py-3 rounded outline-none cursor-pointer ${loading ? "opacity-40 disabled" : ""}`}
+          className={`px-6 my-[5vh] bg-[#111] text-white py-3 rounded outline-none cursor-pointer ${
+            loading ? 'opacity-40 disabled' : ''
+          }`}
         >
-          {
-            loading ? "Creating ...." : " Create Course"
-          }
+          {loading ? 'Creating ....' : ' Create Course'}
         </button>
       </form>
     </section>

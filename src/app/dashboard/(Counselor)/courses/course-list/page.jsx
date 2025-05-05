@@ -110,7 +110,7 @@ export default function Page () {
                   <td className='p-2 border border-black/20 text-nowrap text-center'>
                     {course.id}
                   </td>
-                  <td className='p-2 border border-black/20 text-nowrap text-center'>
+                  <td className='p-2 border border-black/20 text-nowrap text-center flex justify-center items-center'>
                     {course.course_thumbnail && (
                       <div>
                         <Image
@@ -118,7 +118,7 @@ export default function Page () {
                           height={100}
                           width={100}
                           alt={course.course_name}
-                          className='object-cover size-24 rounded'
+                          className='object-cover size-16 rounded'
                         />
                       </div>
                     )}

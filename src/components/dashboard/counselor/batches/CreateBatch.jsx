@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form';
 
 
 const CreateBatch = () => {
-    const {data, loading, error} = useGetData('/courses/');
+    const {data, loading, error} = useGetData('/course-ref/');
 
     const submitHandler = async (data) => {
       

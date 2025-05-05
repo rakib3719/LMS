@@ -17,7 +17,7 @@ const AdmitCourse = () => {
     data: batches,
     loading: batchesLoading,
     error: batchesError
-  } = useGetData('/batches/');
+  } = useGetData('/batch-ref/');
 
   const {
     register,

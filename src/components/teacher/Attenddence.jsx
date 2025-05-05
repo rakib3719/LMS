@@ -163,9 +163,9 @@ const Attenddence = ({id}) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data && matchedStudents.map((item) => (
+                    {data && matchedStudents?.map((item) => (
                         <tr
-                            key={item.id}
+                            key={item?.id}
                             className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50"
                         >
                             <td className="p-3">

@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-// import logo from '@/assets/images/logo2.png';
-import logo from '../../assets/images/logo.png'
+import logo from '@/assets/images/logo.png';
+// import logo from '../../assets/images/logo.png'
+
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';

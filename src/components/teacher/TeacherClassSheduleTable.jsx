@@ -1,7 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import React, { useState } from 'react';
-import {  FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import {  FaChevronLeft, FaChevronRight, FaUpload } from 'react-icons/fa';
 
 
 const  TeacherCalassSheduleTable = ({ data }) => {
@@ -62,6 +63,7 @@ const  TeacherCalassSheduleTable = ({ data }) => {
                 <th className="p-3">Batch</th>
                 <th className="p-3">Teacher</th>
                 <th className="p-3">Start Time</th>
+                <th className="p-3"> Class Metarials</th>
              
               </tr>
             </thead>
@@ -73,6 +75,31 @@ const  TeacherCalassSheduleTable = ({ data }) => {
                   <td className="p-3">{item.batch}</td>
                   <td className="p-3">{item.teacher}</td>
                   <td className="p-3">{item.class_start}</td>
+                  <td className="p-3">
+
+
+                 <div className='flex gap-2'>
+                 <Link
+                                           href={`/dashboard/class-metarials/${item.id}/class-metarials-view`}
+                                           className="p-2 bg-green-800 rounded text-white "
+                                    
+                                         >
+                                           Class Metarials
+                                         </Link>
+    
+                 </div>
+
+
+                  </td>
+                         {/* <td className=''>
+                         <Link
+                                           href={`/dashboard/upload-course-material/?id=${item.id}`}
+                                           className="p-2 bg-green-800 rounded text-white "
+                                           title="Edit"
+                                         >
+                                           <FaUpload />
+                                         </Link>
+                         </td> */}
                 
                 </tr>
               ))}
